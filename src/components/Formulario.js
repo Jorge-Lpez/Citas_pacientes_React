@@ -1,5 +1,6 @@
 import React, {Fragment, useState} from 'react';
 import { v4 as uuidv4} from "uuid";
+import PropTypes from "prop-types";
 
 
 const Formulario = ({crearcita}) => {
@@ -68,19 +69,19 @@ const Formulario = ({crearcita}) => {
 
     return ( 
         <Fragment>
-            <h2>Crear Cita</h2>
+            <h2 data-testid="titulo">Crear Cita</h2>
 
             {
             error
             ?
-            <p className="alerta-error">Error en el formulario</p>
+            <p data-testid="alerta" className="alerta-error">Error en el formulario</p>
             :
             null
             }
 
 
             <form 
-            onSubmit={enviarcita}>
+                 onSubmit={enviarcita}>
                 <label>Nombre Mascota</label>
                 <input 
                     value ={mascota}
@@ -130,6 +131,7 @@ const Formulario = ({crearcita}) => {
                 </textarea>
 
                 <button
+                    data-testid="btn-submit"
                     type="submit"
                     className="u-full-width button-primary"
                 >
@@ -141,4 +143,9 @@ const Formulario = ({crearcita}) => {
     );
 }
  
+
+Formulario.propTypes = {
+    crearcita: PropTypes.func.isRequired
+}
+
 export default Formulario;
